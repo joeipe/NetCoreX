@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="NetCoreX.API/NetCoreX.API.csproj" />
+  <Project Path="SharedKernel/SharedKernel.csproj" Id="f3ec56cf-6387-4632-8f93-94080db80495" />
+</Solution>
