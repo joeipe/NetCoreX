@@ -1,4 +1,7 @@
 <Solution>
   <Project Path="NetCoreX.API/NetCoreX.API.csproj" />
+  <Project Path="NetCoreX.Data/NetCoreX.Data.csproj" Id="c64939b0-599e-4f3f-a0be-e8ac0ae31541" />
+  <Project Path="NetCoreX.Domain/NetCoreX.Domain.csproj" Id="eb6ef5c5-eb71-4412-850f-34b2cbe7d1d0" />
+  <Project Path="NetCoreX.ViewModel/NetCoreX.ViewModel.csproj" Id="c882660c-545f-41ea-8c73-97b9c760d49e" />
   <Project Path="SharedKernel/SharedKernel.csproj" Id="f3ec56cf-6387-4632-8f93-94080db80495" />
 </Solution>
