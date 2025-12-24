@@ -7,7 +7,8 @@ namespace NetCoreX.API.Configurations
     {
         public static void RegisterContactsEndpoints(this IEndpointRouteBuilder endpoints)
         {
-            var contactsEndpoints = endpoints.MapGroup("/contacts");
+            var contactsEndpoints = endpoints.MapGroup("/contacts")
+                .RequireAuthorization();
 
             contactsEndpoints.MapGet("", ContactsHandler.GetContactsAsync)
                 .WithSummary("Get all contacts");
@@ -16,11 +17,13 @@ namespace NetCoreX.API.Configurations
                 .WithSummary("Get a contact by providing an id");
 
             contactsEndpoints.MapPost("", ContactsHandler.SaveContactAsync)
+                .RequireAuthorization("MustBeAdminFromAu")
                 .AddEndpointFilter<ValidationAnnotationFilters>()
                 .ProducesValidationProblem(400)
                 .WithSummary("Create or update contact");
 
             contactsEndpoints.MapDelete("/{id:int}", ContactsHandler.DeleteContactAsync)
+                .RequireAuthorization("MustBeAdminFromAu")
                 .WithSummary("Delete a contact by providing Id");
         }
     }

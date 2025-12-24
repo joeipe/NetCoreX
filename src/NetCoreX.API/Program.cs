@@ -14,14 +14,23 @@ builder.Services.AddDatabaseConfiguration(builder.Configuration);
 builder.Services.AddAutoMapperConfiguration();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
+builder.Services.AddExceptionConfiguration();
+
+builder.Services.AddAuthenticationConfiguration(builder.Configuration);
+builder.Services.AddAuthorizationConfiguration();
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddSwaggerConfiguration();
 
 var app = builder.Build();
 
+app.ApplyException(app.Environment);
+
 app.UseHttpsRedirection();
 
 app.ApplySwagger();
+
+app.ApplyAuth();
 
 app.RegisterContactsEndpoints();
 
