@@ -47,5 +47,13 @@ namespace NetCoreX.API.EndpointsHandler
 
             return TypedResults.NoContent();
         }
+
+        public static async Task<Ok<string>> GetEnvAsync(
+            IConfiguration configuration)
+        {
+            var env = configuration["CurretEnv"];
+
+            return TypedResults.Ok(env);
+        }
     }
 }
