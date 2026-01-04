@@ -6,8 +6,8 @@ using NetCoreX.Data.Repositories.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Configuration.AddAppConfigurationConfiguration(builder.Environment);
-builder.Services.AddAppConfigurationConfiguration(builder.Environment);
+//builder.Configuration.AddAppConfigurationConfiguration(builder.Environment);
+//builder.Services.AddAppConfigurationConfiguration(builder.Environment);
 
 builder.Services.AddMediatR(cfg =>
 {
@@ -33,7 +33,7 @@ app.UseHttpsRedirection();
 
 app.ApplySwagger();
 
-app.ApplyAppConfiguration(app.Environment);
+//app.ApplyAppConfiguration(app.Environment);
 
 app.ApplyAuth();
 
