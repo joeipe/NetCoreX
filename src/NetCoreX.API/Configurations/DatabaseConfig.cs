@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using NetCoreX.Data;
+using Serilog;
 
 namespace NetCoreX.API.Configurations
 {
@@ -9,11 +11,17 @@ namespace NetCoreX.API.Configurations
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
+            string folderName = "AppData";
+            var fileName = "NetCoreXDb.db";
+            var relativeFilePath = $@"{folderName}{fileName}";
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativeFilePath);
+
             services.AddDbContext<NetCoreXDbContext>(options =>
                 options
-                    .UseSqlite(configuration.GetConnectionString("DBConnectionString"))
+                    //.UseSqlite(configuration.GetConnectionString("DBConnectionString"))
                     //.LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
-                    //.LogTo(message => Log.Information(message), new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
+                    .UseSqlite($"Data Source={filePath}")
+                    .LogTo(message => Log.Information(message), new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
                     .EnableSensitiveDataLogging()
                     //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
             );

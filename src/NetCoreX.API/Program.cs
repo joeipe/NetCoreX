@@ -2,43 +2,67 @@ using NetCoreX.API.Configurations;
 using NetCoreX.Data.Queries;
 using NetCoreX.Data.Repositories;
 using NetCoreX.Data.Repositories.Interfaces;
+using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateBootstrapLogger();
 
-// Add services to the container.
-//builder.Configuration.AddAppConfigurationConfiguration(builder.Environment);
-//builder.Services.AddAppConfigurationConfiguration(builder.Environment);
+Log.Information("Starting up");
 
-builder.Services.AddMediatR(cfg =>
+try
 {
-    cfg.RegisterServicesFromAssembly(typeof(Queries).Assembly);
-});
-builder.Services.AddDatabaseConfiguration(builder.Configuration);
-builder.Services.AddAutoMapperConfiguration();
-builder.Services.AddScoped<IContactRepository, ContactRepository>();
+    var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddExceptionConfiguration();
+    builder.Host.UseSerilog((ctx, lc) => lc
+        .WriteTo.Console()
+        .ReadFrom.Configuration(ctx.Configuration));
 
-builder.Services.AddAuthenticationConfiguration(builder.Configuration);
-builder.Services.AddAuthorizationConfiguration();
+    // Add services to the container.
+    //builder.Configuration.AddAppConfigurationConfiguration(builder.Environment);
+    //builder.Services.AddAppConfigurationConfiguration(builder.Environment);
 
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddSwaggerConfiguration();
+    builder.Services.AddMediatR(cfg =>
+    {
+        cfg.RegisterServicesFromAssembly(typeof(Queries).Assembly);
+    });
+    builder.Services.AddDatabaseConfiguration(builder.Configuration);
+    builder.Services.AddAutoMapperConfiguration();
+    builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
-var app = builder.Build();
+    builder.Services.AddExceptionConfiguration();
 
-app.ApplyException(app.Environment);
+    builder.Services.AddAuthenticationConfiguration(builder.Configuration);
+    builder.Services.AddAuthorizationConfiguration();
 
-app.UseHttpsRedirection();
+    // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+    builder.Services.AddSwaggerConfiguration();
 
-app.ApplySwagger();
+    var app = builder.Build();
 
-//app.ApplyAppConfiguration(app.Environment);
+    app.ApplyException(app.Environment);
 
-app.ApplyAuth();
+    app.UseHttpsRedirection();
 
-app.RegisterContactsEndpoints();
+    app.ApplySwagger();
 
-app.ApplyDatabaseSchema(app.Environment);
+    //app.ApplyAppConfiguration(app.Environment);
 
-app.Run();
+    app.ApplyAuth();
+
+    app.RegisterContactsEndpoints();
+
+    app.ApplyDatabaseSchema(app.Environment);
+
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Unhandled exception");
+}
+finally
+{
+    Log.Information("Shut down complete");
+    Log.CloseAndFlush();
+}
+
