@@ -11,16 +11,17 @@ namespace NetCoreX.API.Configurations
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
-            string folderName = "AppData";
-            var fileName = "NetCoreXDb.db";
-            var relativeFilePath = $@"{folderName}{fileName}";
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativeFilePath);
+            var basePath = Directory.GetCurrentDirectory();
+            var dataDir = Path.Combine(basePath, "AppData");
+            Directory.CreateDirectory(dataDir); 
+
+            var dbPath = Path.Combine(dataDir, "NetCoreXDb.db");
 
             services.AddDbContext<NetCoreXDbContext>(options =>
                 options
                     //.UseSqlite(configuration.GetConnectionString("DBConnectionString"))
                     //.LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
-                    .UseSqlite($"Data Source={filePath}")
+                    .UseSqlite($"Data Source={dbPath}")
                     .LogTo(message => Log.Information(message), new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
                     .EnableSensitiveDataLogging()
                     //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
