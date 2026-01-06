@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netcorex-api
+  namespace: development
+spec:
+  selector:
+    matchLabels:
+      app: netcorex-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: netcorex-api
+    spec:
+      containers:
+        - name: netcorex-api
+          image: netcorexapi:dev # crnetcorex.azurecr.io/netcorexapi:latest
+          envFrom:
+            - configMapRef:
+                name: netcorex-configmap
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: netcorex-api-service
+  namespace: development
+spec:
+  selector:
+    app: netcorex-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

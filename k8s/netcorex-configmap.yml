@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: netcorex-configmap
+  namespace: development
+data:
+  ASPNETCORE_ENVIRONMENT: "Development"
