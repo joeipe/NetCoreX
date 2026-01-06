@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using NetCoreX.Data;
 using Serilog;
 
@@ -13,7 +12,7 @@ namespace NetCoreX.API.Configurations
 
             var basePath = Directory.GetCurrentDirectory();
             var dataDir = Path.Combine(basePath, "AppData");
-            Directory.CreateDirectory(dataDir); 
+            Directory.CreateDirectory(dataDir);
 
             var dbPath = Path.Combine(dataDir, "NetCoreXDb.db");
 
@@ -24,7 +23,7 @@ namespace NetCoreX.API.Configurations
                     .UseSqlite($"Data Source={dbPath}")
                     .LogTo(message => Log.Information(message), new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
                     .EnableSensitiveDataLogging()
-                    //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+            //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
             );
         }
 

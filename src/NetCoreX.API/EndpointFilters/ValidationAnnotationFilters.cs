@@ -1,5 +1,4 @@
-﻿
-using MiniValidation;
+﻿using MiniValidation;
 using NetCoreX.ViewModel;
 
 namespace NetCoreX.API.EndpointFilters

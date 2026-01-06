@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Query;
 using SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace NetCoreX.Data
 {

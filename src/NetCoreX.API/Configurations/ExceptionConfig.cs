@@ -1,6 +1,4 @@
-﻿using NetCoreX.Data;
-
-namespace NetCoreX.API.Configurations
+﻿namespace NetCoreX.API.Configurations
 {
     public static class ExceptionConfig
     {

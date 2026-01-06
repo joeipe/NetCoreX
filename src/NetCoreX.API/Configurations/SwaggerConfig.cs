@@ -4,7 +4,7 @@ namespace NetCoreX.API.Configurations
 {
     public static class SwaggerConfig
     {
-        const string schemeId = "bearer";
+        private const string schemeId = "bearer";
 
         public static void AddSwaggerConfiguration(this IServiceCollection services)
         {

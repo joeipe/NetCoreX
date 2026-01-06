@@ -3,9 +3,6 @@ using Microsoft.Extensions.Logging;
 using NetCoreX.Data.Repositories.Interfaces;
 using NetCoreX.Domain;
 using SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using static NetCoreX.Data.Commands.Commands;
 
 namespace NetCoreX.Data.CommandHandlers

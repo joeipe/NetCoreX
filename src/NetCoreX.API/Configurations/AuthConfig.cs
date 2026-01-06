@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-
-namespace NetCoreX.API.Configurations
+﻿namespace NetCoreX.API.Configurations
 {
     public static class AuthConfig
     {

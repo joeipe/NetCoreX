@@ -3,9 +3,6 @@ using Microsoft.Extensions.Logging;
 using NetCoreX.Data.Repositories.Interfaces;
 using NetCoreX.ViewModel;
 using SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using static NetCoreX.Data.Queries.Queries;
 
 namespace NetCoreX.Data.QueryHandlers

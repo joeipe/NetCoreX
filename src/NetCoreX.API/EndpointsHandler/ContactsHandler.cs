@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using NetCoreX.ViewModel;
 using static NetCoreX.Data.Commands.Commands;

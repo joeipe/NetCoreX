@@ -66,4 +66,3 @@ finally
     Log.Information("Shut down complete");
     Log.CloseAndFlush();
 }
-

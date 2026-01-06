@@ -1,8 +1,5 @@
 ﻿using NetCoreX.ViewModel;
 using SharedKernel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NetCoreX.Data.Commands
 {

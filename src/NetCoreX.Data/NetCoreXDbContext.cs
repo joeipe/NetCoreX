@@ -9,13 +9,11 @@ namespace NetCoreX.Data
 
         public NetCoreXDbContext()
         {
-            
         }
 
         public NetCoreXDbContext(DbContextOptions<NetCoreXDbContext> options)
             : base(options)
         {
-            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
