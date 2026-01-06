@@ -51,6 +51,7 @@ try
     app.ApplyAuth();
 
     app.RegisterContactsEndpoints();
+    app.RegisterAdminEndpoints();
 
     app.ApplyDatabaseSchema(app.Environment);
 

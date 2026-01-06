@@ -25,9 +25,13 @@ namespace NetCoreX.API.Configurations
             contactsEndpoints.MapDelete("/{id:int}", ContactsHandler.DeleteContactAsync)
                 .RequireAuthorization("MustBeAdminFromAu")
                 .WithSummary("Delete a contact by providing Id");
+        }
 
-            contactsEndpoints.MapGet("env", ContactsHandler.GetEnvAsync)
-                .AllowAnonymous()
+        public static void RegisterAdminEndpoints(this IEndpointRouteBuilder endpoints)
+        {
+            var adminEndpoints = endpoints.MapGroup("/admin");
+
+            adminEndpoints.MapGet("env", AdminHandler.GetEnvAsync)
                 .WithSummary("Get environment from config");
         }
     }
