@@ -10,6 +10,8 @@ namespace NetCoreX.API.Configurations
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
+            //services.AddOpenApi();
+
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(options =>
             {
@@ -33,6 +35,9 @@ namespace NetCoreX.API.Configurations
 
         public static void ApplySwagger(this IApplicationBuilder app)
         {
+            //app.MapOpenApi();
+            //app.UseSwaggerUI(options => options.SwaggerEndpoint("/openapi/v1.jason", "v1"));
+
             app.UseSwagger();
             app.UseSwaggerUI();
         }
