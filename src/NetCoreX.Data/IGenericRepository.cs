@@ -9,11 +9,11 @@ namespace NetCoreX.Data
 {
     public interface IGenericRepository<TEntity> where TEntity : class, IEntity
     {
-        void Create(params TEntity[] items);
+        void Create(params IEnumerable<TEntity> items);
 
-        void Update(params TEntity[] items);
+        void Update(params IEnumerable<TEntity> items);
 
-        void Delete(params TEntity[] items);
+        void Delete(params IEnumerable<TEntity> items);
 
         Task SaveAsync();
 

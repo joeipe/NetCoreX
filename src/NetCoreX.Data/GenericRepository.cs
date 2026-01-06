@@ -16,7 +16,7 @@ namespace NetCoreX.Data
             _dataTable = _dataContext.Set<TEntity>();
         }
 
-        public virtual void Create(params TEntity[] items)
+        public virtual void Create(params IEnumerable<TEntity> items)
         {
             foreach (TEntity item in items)
             {
@@ -24,7 +24,7 @@ namespace NetCoreX.Data
             }
         }
 
-        public virtual void Update(params TEntity[] items)
+        public virtual void Update(params IEnumerable<TEntity> items)
         {
             foreach (TEntity item in items)
             {
@@ -32,7 +32,7 @@ namespace NetCoreX.Data
             }
         }
 
-        public virtual void Delete(params TEntity[] items)
+        public virtual void Delete(params IEnumerable<TEntity> items)
         {
             foreach (TEntity item in items)
             {
