@@ -7,7 +7,7 @@ namespace NetCoreX.API.EndpointFilters
     {
         public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
         {
-            var vm = context.GetArgument<ContactVM>(1);
+            var vm = context.GetArgument<ContactVM>(2);
 
             if (!MiniValidator.TryValidate(vm, out var validationErrors))
             {

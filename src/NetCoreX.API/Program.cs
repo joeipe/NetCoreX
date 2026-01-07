@@ -1,4 +1,5 @@
 using NetCoreX.API.Configurations;
+using NetCoreX.API.Services;
 using NetCoreX.Data.Queries;
 using NetCoreX.Data.Repositories;
 using NetCoreX.Data.Repositories.Interfaces;
@@ -22,6 +23,8 @@ try
     //builder.Configuration.AddAppConfigurationConfiguration(builder.Environment);
     //builder.Services.AddAppConfigurationConfiguration(builder.Environment);
 
+    builder.Services.AddCacheConfiguration(builder.Configuration, builder.Environment);
+
     builder.Services.AddMediatR(cfg =>
     {
         cfg.RegisterServicesFromAssembly(typeof(Queries).Assembly);
@@ -29,6 +32,7 @@ try
     builder.Services.AddDatabaseConfiguration(builder.Configuration);
     builder.Services.AddAutoMapperConfiguration();
     builder.Services.AddScoped<IContactRepository, ContactRepository>();
+    builder.Services.AddScoped<CacheService>();
 
     builder.Services.AddExceptionConfiguration();
 
