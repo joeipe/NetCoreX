@@ -8,19 +8,16 @@ namespace NetCoreX.API.Configurations
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
             if (configuration == null) throw new ArgumentNullException(nameof(configuration));
+            if (environment == null) throw new ArgumentNullException(nameof(environment));
 
-            //if (!environment.IsDevelopment())
-            //{
-            //    services.AddDistributedMemoryCache();
-            //}
-            //else
-            //{
-            //    services.AddStackExchangeRedisCache(options =>
-            //    {
-            //        options.Configuration = configuration.GetConnectionString("RedisConnectionString");
-            //        options.InstanceName = "master";
-            //    });
-            //}
+            if (!environment.IsDevelopment())
+            {
+                services.AddStackExchangeRedisCache(options =>
+                {
+                    options.Configuration = configuration.GetConnectionString("RedisConnectionString");
+                    options.InstanceName = "master";
+                });
+            }
 
             services.AddHybridCache(options =>
             {
