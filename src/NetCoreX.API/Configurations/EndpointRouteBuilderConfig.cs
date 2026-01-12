@@ -18,7 +18,7 @@ namespace NetCoreX.API.Configurations
 
             contactsEndpoints.MapPost("", ContactsHandler.SaveContactAsync)
                 .RequireAuthorization("MustBeAdminFromAu")
-                .AddEndpointFilter<ValidationAnnotationFilters>()
+                //.AddEndpointFilter<ValidationAnnotationFilters>()
                 .ProducesValidationProblem(400)
                 .WithSummary("Create or update contact");
 

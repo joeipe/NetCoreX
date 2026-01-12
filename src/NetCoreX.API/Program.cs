@@ -15,6 +15,8 @@ try
 {
     var builder = WebApplication.CreateBuilder(args);
 
+    builder.Services.AddValidation();
+
     builder.Host.UseSerilog((ctx, lc) => lc
         .WriteTo.Console()
         .ReadFrom.Configuration(ctx.Configuration));

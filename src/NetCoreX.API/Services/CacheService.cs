@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Caching.Hybrid;
-using System.Text.Json;
+﻿using Microsoft.Extensions.Caching.Hybrid;
 
 namespace NetCoreX.API.Services
 {
