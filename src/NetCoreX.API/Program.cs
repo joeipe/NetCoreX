@@ -40,6 +40,8 @@ try
 
     builder.Services.AddAuthenticationConfiguration(builder.Configuration);
     builder.Services.AddAuthorizationConfiguration();
+    
+    builder.Services.AddRateLimitConfiguration();
 
     // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
     builder.Services.AddSwaggerConfiguration();
@@ -49,6 +51,8 @@ try
     app.ApplyException(app.Environment);
 
     app.UseHttpsRedirection();
+
+    app.ApplyRateLimiting();
 
     app.ApplySwagger();
 
